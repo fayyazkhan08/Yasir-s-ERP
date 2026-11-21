@@ -1,0 +1,121 @@
+/*
+  Yasir's Projectdesign tokens — strict black & white theme.
+  No hue anywhere: every color is black, white, or a step of gray.
+  Status/semantic meaning (paid/unpaid, low stock, etc.) is carried by
+  contrast, weight, borders and icons/dots rather than color.
+  Type: Sora (display) / Inter (body) / JetBrains Mono (all numeric & currency data)
+*/
+:root {
+  /* --- Brand / accent scale ---
+     "Primary" always means "the strongest contrast against the current
+     background" — black on light backgrounds, inverted to white in dark
+     mode below, so buttons/active states stay legible in both themes. */
+  --primary-900: #000000;
+  --primary-800: #0D0D0D;
+  --primary-700: #171717;
+  --primary-600: #262626;
+  --primary-500: #404040;
+  --primary-400: #595959;
+  --primary-100: #E8E8E8;
+  --accent-600: #1A1A1A;
+  --accent-500: #333333;
+  --accent-100: #E0E0E0;
+  --brand-gradient: linear-gradient(135deg, #000000 0%, #262626 55%, #404040 100%);
+  /* Text/icon color to place ON TOP of --brand-gradient / primary buttons —
+     inverted per theme so it's always readable. */
+  --on-primary: #FFFFFF;
+
+  /* --- Semantic tones ---
+     No hue available, so meaning is carried by a real ladder of gray values
+     (not just one shade) plus border/weight treatment added in components.css
+     (e.g. danger badges get an outline, accent/pending get a dashed one) —
+     never rely on subtle shade alone for something safety-relevant. */
+  --success-600: #000000;
+  --success-100: #EAEAEA;
+  --danger-600: #000000;
+  --danger-100: #CFCFCF;
+  --info-600: #404040;
+  --info-100: #F1F1F1;
+  --purple-600: #1A1A1A;
+  --purple-100: #E2E2E2;
+
+  /* --- Light theme surfaces --- */
+  --bg: #F4F4F4;
+  --surface: #FFFFFF;
+  --surface-raised: #FFFFFF;
+  --surface-sunken: #ECECEC;
+  --border: #DEDEDE;
+  --border-strong: #BFBFBF;
+  --text-primary: #0A0A0A;
+  --text-secondary: #4D4D4D;
+  --text-muted: #8A8A8A;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.07);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.16);
+  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.24);
+
+  /* --- Type --- */
+  --font-display: 'Sora', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  /* --- Radii / spacing scale --- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  --sidebar-width: 252px;
+  --sidebar-width-collapsed: 72px;
+  --topbar-height: 66px;
+
+  --transition-fast: 140ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme='dark'] {
+  --bg: #0A0A0A;
+  --surface: #141414;
+  --surface-raised: #191919;
+  --surface-sunken: #1F1F1F;
+  --border: #2A2A2A;
+  --border-strong: #3D3D3D;
+  --text-primary: #F5F5F5;
+  --text-secondary: #B0B0B0;
+  --text-muted: #767676;
+
+  /* Inverted brand scale: white becomes the "strong contrast" color on dark backgrounds */
+  --primary-900: #FFFFFF;
+  --primary-800: #F2F2F2;
+  --primary-700: #E5E5E5;
+  --primary-600: #D4D4D4;
+  --primary-500: #BFBFBF;
+  --primary-400: #A6A6A6;
+  --primary-100: #262626;
+  --accent-600: #E5E5E5;
+  --accent-500: #CCCCCC;
+  --accent-100: #262626;
+  --brand-gradient: linear-gradient(135deg, #FFFFFF 0%, #D9D9D9 55%, #BFBFBF 100%);
+  --on-primary: #0A0A0A;
+
+  --success-600: #FFFFFF;
+  --success-100: #202020;
+  --danger-600: #FFFFFF;
+  --danger-100: #3A3A3A;
+  --info-600: #C2C2C2;
+  --info-100: #1B1B1B;
+  --purple-600: #E5E5E5;
+  --purple-100: #242424;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.55);
+  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.65);
+}
