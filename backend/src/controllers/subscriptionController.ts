@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { pool } from '../config/db';
 import { asyncHandler, parsePagination, buildPaginatedResponse, HttpError } from '../utils/helpers';
 import { RowDataPacket, ResultSetHeader } from 'mysql2';
+import { creditReferralCommission } from '../services/commissionService';
 
 // GET /api/subscription-plans
 export const listPlans = asyncHandler(async (req: Request, res: Response) => {
@@ -64,6 +65,15 @@ export const createSubscription = asyncHandler(async (req: Request, res: Respons
      VALUES (?, ?, ?, ?, 'active', ?)`,
     [customer_id, plan_id, startDate.toISOString().slice(0, 10), endDate.toISOString().slice(0, 10), auto_renew ? 1 : 0]
   );
+
+  // Customer portal: if this customer was referred, credit the referrer's wallet. This must never
+  // block or fail the admin's own action, so any error is logged and swallowed — the call is
+  // idempotent (one commission per subscription), so it is safe to retry later.
+  try {
+    await creditReferralCommission(result.insertId);
+  } catch (err) {
+    console.error(`Referral commission failed for subscription ${result.insertId}:`, err);
+  }
 
   const [rows] = await pool.query<RowDataPacket[]>(
     `SELECT cs.*, p.name AS plan_name FROM customer_subscriptions cs

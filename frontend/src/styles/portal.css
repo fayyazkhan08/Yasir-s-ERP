@@ -1,0 +1,54 @@
+/* Customer portal additions. Uses the existing design tokens only (strict black & white). */
+
+/* ---------- Tabs (also used by the admin Customer Portal page) ---------- */
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); padding: 0 var(--space-4); }
+.tab {
+  background: none; border: none; cursor: pointer; padding: 12px 14px; font-size: 13.5px; font-weight: 600;
+  color: var(--text-muted); border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+.tab:hover { color: var(--text-primary); }
+.tab.active { color: var(--text-primary); border-bottom-color: var(--text-primary); }
+
+/* ---------- Referral link box ---------- */
+.link-box {
+  display: flex; align-items: center; gap: var(--space-2);
+  background: var(--surface-sunken); border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md); padding: 8px 8px 8px 14px;
+}
+.link-box code {
+  flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-family: var(--font-mono); font-size: 12.5px; color: var(--text-primary);
+}
+.code-chip {
+  display: inline-block; font-family: var(--font-mono); font-weight: 700; letter-spacing: 0.12em;
+  padding: 4px 12px; border-radius: var(--radius-sm); background: var(--primary-100); color: var(--primary-700);
+}
+
+/* ---------- Progress bar (subscription time remaining) ---------- */
+.progress { height: 8px; border-radius: 999px; background: var(--surface-sunken); border: 1px solid var(--border); overflow: hidden; }
+.progress > span { display: block; height: 100%; background: var(--brand-gradient); border-radius: 999px; }
+
+/* ---------- Banner ---------- */
+.banner {
+  display: flex; align-items: flex-start; gap: var(--space-3);
+  border: 1px solid var(--text-primary); border-radius: var(--radius-md);
+  padding: 12px 16px; font-size: 13px; background: var(--surface);
+}
+.banner.dashed { border: 1px dashed var(--border-strong); background: var(--surface-sunken); }
+
+/* ---------- Ledger amounts: sign + weight carry meaning (no color in this theme) ---------- */
+.amt-credit { font-weight: 700; }
+.amt-debit { color: var(--text-secondary); }
+
+/* ---------- Key/value list ---------- */
+.kv { display: grid; grid-template-columns: 150px 1fr; gap: 10px 16px; font-size: 13.5px; }
+.kv dt { color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; padding-top: 2px; }
+.kv dd { margin: 0; }
+
+/* minmax(0, …) lets grid tracks shrink below their content's min-width — a bare `1fr` would let a
+   chart or a long link push the whole page wider than a phone screen. */
+.portal-two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-4); }
+.portal-dash-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: var(--space-4); }
+@media (max-width: 1180px) { .portal-two-col, .portal-dash-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 560px) { .kv { grid-template-columns: 1fr; gap: 2px 0; } .kv dt { padding-top: 10px; } }

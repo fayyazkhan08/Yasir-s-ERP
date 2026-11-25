@@ -44,7 +44,7 @@ export function LoginPage() {
     <div className="auth-shell">
       <div className="auth-brand-panel">
         <div className="auth-brand-content">
-          <div className="mark">L</div>
+          <div className="mark">Y</div>
           <h1 style={{ color: 'var(--on-primary)', fontSize: 32, marginTop: 28, maxWidth: 340 }}>
             Run your factory floor to your front office — in one place.
           </h1>
@@ -59,7 +59,7 @@ export function LoginPage() {
         <div className="auth-form-card">
           <div style={{ marginBottom: 32 }}>
             <h2>Welcome back</h2>
-            <p className="text-muted" style={{ fontSize: 13.5, marginTop: 4 }}>Sign in to your Yasir's Projectworkspace</p>
+            <p className="text-muted" style={{ fontSize: 13.5, marginTop: 4 }}>Sign in to your Yasir's Project workspace</p>
           </div>
 
           <form className="flex-col gap-4" onSubmit={handleSubmit} noValidate>

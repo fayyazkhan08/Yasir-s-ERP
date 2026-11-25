@@ -1,0 +1,45 @@
+/* ---------- Print preview overlay (invoice / dealer order) ---------- */
+.print-overlay {
+  position: fixed; inset: 0; z-index: 1000; background: var(--bg);
+  display: flex; flex-direction: column;
+}
+.print-toolbar {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-3);
+  padding: var(--space-3) var(--space-5); background: var(--surface); border-bottom: 1px solid var(--border);
+}
+.print-scroll { flex: 1; overflow: auto; padding: var(--space-5); }
+
+/* The sheet is always "paper": white background, dark text, regardless of the app theme. */
+.print-sheet {
+  width: 210mm; max-width: 100%; min-height: 297mm; margin: 0 auto; background: #fff; color: #111;
+  padding: 14mm 14mm; box-shadow: var(--shadow-md); font-family: var(--font-body); font-size: 12px; line-height: 1.45;
+  box-sizing: border-box;
+}
+.print-sheet h1 { font-family: var(--font-display); font-size: 20px; margin: 0; color: #000; }
+.print-sheet h2 { font-family: var(--font-display); font-size: 16px; margin: 0; color: #000; letter-spacing: 0.04em; }
+.print-sheet .ps-muted { color: #555; }
+.print-sheet .ps-head { display: flex; justify-content: space-between; gap: 16px; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 12px; }
+.print-sheet .ps-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px; }
+.print-sheet .ps-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: #666; font-weight: 700; margin-bottom: 2px; }
+.print-sheet table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+.print-sheet th { background: #111; color: #fff; text-align: left; padding: 6px 8px; font-size: 11px; }
+.print-sheet td { padding: 6px 8px; border-bottom: 1px solid #ddd; vertical-align: top; }
+.print-sheet th.r, .print-sheet td.r { text-align: right; }
+.print-sheet .ps-comment { font-size: 10.5px; color: #666; margin-top: 1px; }
+.print-sheet .ps-totals { margin-left: auto; width: 62mm; }
+.print-sheet .ps-totals div { display: flex; justify-content: space-between; padding: 2px 0; }
+.print-sheet .ps-totals .grand { border-top: 2px solid #000; margin-top: 4px; padding-top: 5px; font-weight: 700; font-size: 14px; }
+.print-sheet .ps-foot { margin-top: 28px; font-size: 10.5px; color: #777; text-align: center; }
+.print-sheet .mono { font-family: var(--font-mono); }
+
+@media print {
+  @page { size: A4; margin: 0; }
+  html, body { background: #fff !important; }
+  /* Hide the whole app; only the overlay (a direct child of <body>) prints. */
+  body > #root { display: none !important; }
+  .no-print { display: none !important; }
+  .print-overlay { position: static !important; inset: auto !important; background: #fff !important; display: block !important; }
+  .print-scroll { overflow: visible !important; padding: 0 !important; }
+  .print-sheet { box-shadow: none !important; margin: 0 !important; width: 100% !important; min-height: 0 !important; padding: 12mm 14mm !important; }
+  .print-sheet th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
